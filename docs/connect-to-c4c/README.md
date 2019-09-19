@@ -2,7 +2,15 @@
 
 First thing we need to do is to create a *Namespace*, a Namespace is an isolated environment where you can deploy your extension applications.
 
-## Provision a *Kyma Runtime*
+## Register an *Application*
+
+A resource called *Application* represents a placeholder for external enterprise solution you wish to extend via the Kyma Runtime, in our case it would be *C4C*. 
+
+#### Pre-requisites 
+Before you start the process of registering an Application. please ensure that you have provisioned your Kyma runtime in the C4HANA Cockpit. To provision a Kyma Runtime, please refer our [Help docs](https://help.sap.com/viewer/dbce7cc5e9e3469c84849d35e777fe0b/Current/en-US/0bb50b27d76d4113ac32655f31777662.html).
+
+To register an Application place holder follow the following steps:
+
 To provision a kyma runtime log on to [C4HANA Cockpit](http://cx.cloud.sap) 
 ![C4hana cockpit landing page](assets/c4&#32;cockpit&#32;landing&#32;page.png)
 
@@ -10,25 +18,12 @@ From the C4HANA Cockpit navigate to *Extensibility* menu from the menu bar on th
 
 ![C4 home](assets/c4&#32;cockpit&#32;home.png)
 
-Click on th **`+`** button to Provision a Kyma Runtime on a Hyperscaler.
-
-![Provision Runtime](assets/c4&#32;cockpit&#32;add&#32;runtime.png)
-
-Add runtime Details, by mentioning the name of the cluster and specify the underlying Kyma release version.
-
-![Add Details](assets/c4&#32;cockpit&#32;runtime&#32;provision.png)
-
 Once the runtime is provisioned, you should be able to see the cluster entry in the Runtime list.
-![Runtime List](assets/c4&#32;cockpit&#32;runtime&#32;provision&#32;successful.png)
-
-## Register *Application*
-A resource called *Application* represents a placeholder for external enterprise solution you wish to extend via the Kyma Runtime, in our case it would be *C4C*. 
-
-To register an Application place holder follow the following steps:
 
 Click on *Display Name* of your runtime in the C4HANA Cockpit.
 
 ![Runtime List](assets/c4&#32;cockpit&#32;runtime&#32;provision&#32;successful.png)
+
 
 In the *Runtime Details* UI, click on *`+`* to Register an Application, this would allow you to create a placeholder for c4c.
 
@@ -52,27 +47,6 @@ And Validate if *C4C* entry was created in the list of Application.
 
 ![Application List](assets/kyma&#32;go&#32;to&#32;application.png)
 
-
-## Create Namespace
-To create a namespace simply click on the button *+ Create Namespace* which can be found in the kyma console's Overview Page
-
-![kyma create namespace](./assets/kyma&#32;create&#32;namespace.png)
-
-Give a name to your namespace eg: *ted-c4c* and click on *Create*
-
-![kyma namespace details](./assets/kyma&#32;namespace&#32;details.png)
-
-## Bind Application to namespace
-
-It doesn't make sense to use the API and events from any external solution throughout the cluster, Therefore, kyma gives you an option to expose your external application's API and events at a namespace level, this could be done via creating Application Binding. With this Binding Kyma exposes the API and event metadata only to a particular namespace. And this metadata can be viewed in the *Service Catalog* (to be discussed later.)
-
-To bind your Application to a namespace, simply Click on *Create Binding* button on your Application's detail page.
-
-![kyma application binding to namespace](./assets/kyma&#32;application&#32;binding&#32;to&#32;namespace.png)
-
-Select the namespace you want your Application to be be exposing it's metadata and click on *Create*.
-
-![kyma create application binding](./assets/kyma&#32;create&#32;application&#32;binding.png)
 
 ## Connect to C4C
 
@@ -120,6 +94,27 @@ Click on *Save* and then *Activate*
 ![c4c activate event consumer](assets/c4c&#32;activate&#32;connection.png)
 
 - ### In Kyma
+
+#### Create Namespace
+To create a namespace simply click on the button *+ Create Namespace* which can be found in the kyma console's Overview Page
+
+![kyma create namespace](./assets/kyma&#32;create&#32;namespace.png)
+
+Give a name to your namespace eg: *ted-c4c* and click on *Create*
+
+![kyma namespace details](./assets/kyma&#32;namespace&#32;details.png)
+
+#### Bind Application to namespace
+
+It doesn't make sense to use the API and events from any external solution throughout the cluster, Therefore, kyma gives you an option to expose your external application's API and events at a namespace level, this could be done via creating Application Binding. With this Binding Kyma exposes the API and event metadata only to a particular namespace. And this metadata can be viewed in the *Service Catalog* (to be discussed later.)
+
+To bind your Application to a namespace, simply Click on *Create Binding* button on your Application's detail page.
+
+![kyma application binding to namespace](./assets/kyma&#32;application&#32;binding&#32;to&#32;namespace.png)
+
+Select the namespace you want your Application to be be exposing it's metadata and click on *Create*.
+
+![kyma create application binding](./assets/kyma&#32;create&#32;application&#32;binding.png)
 
 Now refresh your *"c4c"* *Application* page in the kyma console. you should be able to see the registered API and events from *C4C* (SAP Sales Cloud)
 
