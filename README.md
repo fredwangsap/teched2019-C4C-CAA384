@@ -1,4 +1,4 @@
-# SAP TechEd Hands-on Session CAA384
+# SAP TechEd Hands-on Workshop CAA384 (Develop and Deliver Cloud-Native Extensions for SAP C/4HANA)
 
 ## Project Description
 This is a sample project that will be used in SAP TechEd 2019 hands-on session CAA384 to demonstrate how SAP Cloud Platform Extension Factory, Kyma runtime helps you create an extension (Lambda function) consuming APIs and events from SAP Cloud for Customer. 
@@ -15,13 +15,12 @@ Please refer to detailed sample application help in this project to setup, confi
 ## Limitations
 Refer to sample project setup document for details.
 
-## Know Issues
+## Known Issues
 This sample is provided on "as-is" basis. Currently there are no know issues for this sample project.
 
 ## How to obtain support
 This project is provided "as-is"; there is no guarantee that raised issues will be answered or addressed in future releases. For more information, please visit SAP Community and [ask a question](https://answers.sap.com/questions/ask.html), or contact your SAP contact to obtain support. In case you observe any defect in the product usage itself, kindly use the SAP Product Support channel and raise an incident adequately for the defects observed.
 
 ## License
-Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
-
+Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved. 
 This file is licensed under the SAP Sample Code License except as noted otherwise in the [LICENSE](LICENSE) file of this project.
