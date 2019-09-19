@@ -2,6 +2,57 @@
 
 First thing we need to do is to create a *Namespace*, a Namespace is an isolated environment where you can deploy your extension applications.
 
+## Provision a *Kyma Runtime*
+To provision a kyma runtime log on to [C4HANA Cockpit](http://cx.cloud.sap) 
+![C4hana cockpit landing page](assets/c4&#32;cockpit&#32;landing&#32;page.png)
+
+From the C4HANA Cockpit navigate to *Extensibility* menu from the menu bar on the left hand side.
+
+![C4 home](assets/c4&#32;cockpit&#32;home.png)
+
+Click on th **`+`** button to Provision a Kyma Runtime on a Hyperscaler.
+
+![Provision Runtime](assets/c4&#32;cockpit&#32;add&#32;runtime.png)
+
+Add runtime Details, by mentioning the name of the cluster and specify the underlying Kyma release version.
+
+![Add Details](assets/c4&#32;cockpit&#32;runtime&#32;provision.png)
+
+Once the runtime is provisioned, you should be able to see the cluster entry in the Runtime list.
+![Runtime List](assets/c4&#32;cockpit&#32;runtime&#32;provision&#32;successful.png)
+
+## Register *Application*
+A resource called *Application* represents a placeholder for external enterprise solution you wish to extend via the Kyma Runtime, in our case it would be *C4C*. 
+
+To register an Application place holder follow the following steps:
+
+Click on *Display Name* of your runtime in the C4HANA Cockpit.
+
+![Runtime List](assets/c4&#32;cockpit&#32;runtime&#32;provision&#32;successful.png)
+
+In the *Runtime Details* UI, click on *`+`* to Register an Application, this would allow you to create a placeholder for c4c.
+
+![kyma create application](assets/c4&#32;cockpit&#32;add&#32;system.png)
+
+Give a name to your Application placeholder, As the application we are extending is "C4C", lets call the *Application* as *C4C*.
+
+And Now, Click on *Register*
+
+![kyma add application details](assets/c4&#32;cockpit&#32;add&#32;system&#32;name.png)
+
+You should be able to see your application in the list of Registered Applications.
+
+![list of application](assets/c4&#32;cockpit&#32;go&#32;to&#32;console.png)
+
+To validate if the application entry was created in kyma runtime. Go to Kyma-console and click on *Applications* 
+
+![Go to Application](assets/kyma&#32;home.png)
+
+And Validate if *C4C* entry was created in the list of Application.
+
+![Application List](assets/kyma&#32;go&#32;to&#32;application.png)
+
+
 ## Create Namespace
 To create a namespace simply click on the button *+ Create Namespace* which can be found in the kyma console's Overview Page
 
@@ -10,30 +61,6 @@ To create a namespace simply click on the button *+ Create Namespace* which can 
 Give a name to your namespace eg: *ted-c4c* and click on *Create*
 
 ![kyma namespace details](./assets/kyma&#32;namespace&#32;details.png)
-
-## Create *Application*
-A resource called *Application* represents a placeholder for external enterprise solution you wish to extend via the Kyma Runtime, in our case it would be *C4C*. 
-
-To create an Application place holder follow the following steps:
-
-Click on *Applications* item present over the kyma menu bar.
-![kyma home](./assets/kyma&#32;home.png)
-
-In the *Applications* UI, click on *"+ Create Application"* Button, this would allow you to create a placeholder for c4c.
-
-![kyma create application](./assets/kyma&#32;create&#32;application.png)
-
-Give a name to your Application placeholder, As the application we are extending is "C4C", lets call the *Application* as *C4C*. 
-
-And Now, Click on *Create*
-
-![kyma add application details](./assets/kyma&#32;add&#32;application&#32;details.png)
-
-You should be able to see your application in the list of Applications.
-
-Now, Select the Application *c4c* from the list, to go to it's detail page.
-
-![kyma go to application](./assets/kyma&#32;go&#32;to&#32;application.png)
 
 ## Bind Application to namespace
 
@@ -53,15 +80,11 @@ To successfully extend any enterprise solutions, We need to publish the core off
 
 In the following steps, we'd configure C4C to send it's events to our kyma runtime. First thing we need is a connection url, which c4c can use to provision event consumers.
 
-- ### In Kyma
+- ### In C4HANA Cockpit
 
-Click on *Connect Application* from the Application detail page.
+In the `C4HANA Cockpit` Runtime Details Page of your application. click on the `Copy Token` Button. (Keep this URL handy)
 
-![kyma application page](./assets/kyma&#32;application&#32;page.png)
-
-Copy the token url by Clicking on *Copy to clipboard*
-
-![kyma connect to application](./assets/kyma&#32;connect&#32;to&#32;application.png)
+![Copy Integration Token](assets/c4&#32;cockpit&#32;copy&#32;token.png)
 
 - ### In C4C
 Login to C4C system and go to *General Settings* in the *Administrator* menu.
