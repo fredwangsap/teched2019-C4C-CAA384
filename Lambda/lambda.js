@@ -1,3 +1,4 @@
+console.log (JSON.stringify(event.data));
 // Import Dependencies 
 // Axios is an http client to call the C4C API
 const axios = require('axios');
