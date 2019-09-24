@@ -1,4 +1,3 @@
-console.log (JSON.stringify(event.data));
 // Import Dependencies 
 // Axios is an http client to call the C4C API
 const axios = require('axios');
@@ -205,6 +204,7 @@ async function updateLabel(serviceRequestID, c4cLabel) {
 // Main Function of Lambda 
 module.exports = {
     main: async function (event, context) {
+        console.log (JSON.stringify(event.data));        
         try {
             // Extract Service Request UUID from Event Payload
             var serviceRequestID = event.data["entity-id"];
