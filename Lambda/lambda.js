@@ -36,7 +36,7 @@ if (process.env.hasOwnProperty("APPGW_HOST")) {
 
 // Create http client for C4C
 const c4cClient = axios.create({
-    baseURL: `${process.env.GATEWAY_URL}/sap/c4c/odata/v1/c4codataapi`,
+    baseURL: `${process.env.GATEWAY_URL}`,
     timeout: 20000,
     headers: c4cHeaders
 });
