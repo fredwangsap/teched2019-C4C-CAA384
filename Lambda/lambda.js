@@ -36,7 +36,7 @@ if (process.env.hasOwnProperty("APPGW_HOST")) {
 
 // Create http client for C4C
 const c4cClient = axios.create({
-    baseURL: `${process.env.GATEWAY_URL}`,
+    baseURL: process.env.GATEWAY_URL,
     timeout: 20000,
     headers: c4cHeaders
 });
@@ -77,7 +77,7 @@ async function hasServiceRequestEMailOrigin(serviceRequestObjectID) {
         } else {
             return true;
         }
-        
+
     } catch (error) {
         throw {
             "error": "Retrieval of Service Request Origin failed",
@@ -148,7 +148,9 @@ async function getAttachmentImages(EmailID) {
 
 
 // Determine image class through machine learning service
-async function getImageClassification(image) {
+async function getImageClassification(image, retry) {
+
+    if (retry === undefined) { retry = 0 };
     try {
         var decodedFile = new Buffer(image.base64String, 'base64')
         var formData = new FormData();
@@ -164,9 +166,16 @@ async function getImageClassification(image) {
         return response.data.predictions[0].results[0].label;
 
     } catch (error) {
-        throw {
-            "error": "Image Classification failed",
-            "errorDetail": error
+        if (retry < 5) {
+            retry++;
+            console.log(`Retrying image classification for ${image.filename}. Retry number ${retry}`);
+            getImageClassification(image, retry);
+        } else {
+
+            throw {
+                "error": "Image Classification failed",
+                "errorDetail": error
+            }
         }
     }
 }
@@ -204,7 +213,6 @@ async function updateLabel(serviceRequestID, c4cLabel) {
 // Main Function of Lambda 
 module.exports = {
     main: async function (event, context) {
-        console.log (JSON.stringify(event.data));        
         try {
             // Extract Service Request UUID from Event Payload
             var serviceRequestID = event.data["entity-id"];
@@ -225,7 +233,7 @@ module.exports = {
 
                 var labels = images.map(image => getImageClassification(image));
                 labels = await Promise.all(labels);
-                labels = labels.filter(label => label !=="");
+                labels = labels.filter(label => label !== "");
 
                 // Map Leonardo Labels to C4C Classifications
                 var c4cLabel = mapLabelToC4C(labels);
