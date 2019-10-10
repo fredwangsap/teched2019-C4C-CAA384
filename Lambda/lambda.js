@@ -169,7 +169,7 @@ async function getImageClassification(image, retry) {
         if (retry < 5) {
             retry++;
             console.log(`Retrying image classification for ${image.filename}. Retry number ${retry}`);
-            getImageClassification(image, retry);
+            return getImageClassification(image, retry);
         } else {
 
             throw {
